@@ -1,6 +1,6 @@
 import React from "react";
-import AddComment from "./AddComment";
-import moment from "moment";
+import AddComment from "./CommentForm";
+import dayjs from "dayjs";
 
 const Modal = ({ modalPhoto, setVidiblePopup }) => {
   return (
@@ -22,8 +22,8 @@ const Modal = ({ modalPhoto, setVidiblePopup }) => {
           {modalPhoto.comments
             ? modalPhoto.comments.map((comment) => (
                 <li key={comment.id}>
-                  <p>{moment(comment.date).format("DD.MM.YYYY")}</p>
-                  <p>{comment.text}</p>
+                  <time className='modal__comments-date'>{dayjs(comment.date).format("DD.MM.YYYY")}</time>
+                  <p className='modal__comments-text'>{comment.text}</p>
                 </li>
               ))
             : null}
