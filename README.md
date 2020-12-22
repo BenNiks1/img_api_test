@@ -1,4 +1,4 @@
-[GitHub Pages]{https://benniks1.github.io/img_api_test/}
+[GitHub Pages](https://benniks1.github.io/img_api_test/)
 
 ## Задание
 ​
