@@ -1,8 +1,20 @@
 import React, { useState } from "react";
 import ListItem from "./ListItem";
+import Modal from "../Modal";
 
 const List = ({ img }) => {
   const [visiblePopup, setVidiblePopup] = useState(false);
+  const [modalPhoto, setModalPhoto] = useState([]);
+
+  const getPhoto = (id) => {
+    fetch(`https://boiling-refuge-66454.herokuapp.com/images/${id}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((result) => {
+        setModalPhoto(result);
+      });
+  };
 
   return (
     <ul className="list">
@@ -11,6 +23,7 @@ const List = ({ img }) => {
           <ListItem
             onClick={() => {
               setVidiblePopup(!visiblePopup);
+              getPhoto(id);
             }}
             key={id}
             url={url}
@@ -20,22 +33,7 @@ const List = ({ img }) => {
       })}
 
       {visiblePopup && (
-        <div className="modal">
-          <div
-            className="modal__overlay"
-            onClick={() => {
-              setVidiblePopup(false);
-            }}
-          ></div>
-          <div className="modal__inner">
-            <img src="" alt="photo" className="modal__inner-img" />
-            <form className="modal__inner-form">
-              <input type="text" placeholder="Ваше имя" />
-              <input type="text" placeholder="Ваш комментарий" />
-              <button>Оставить комментарий</button>
-            </form>
-          </div>
-        </div>
+        <Modal modalPhoto={modalPhoto} setVidiblePopup={setVidiblePopup} />
       )}
     </ul>
   );
