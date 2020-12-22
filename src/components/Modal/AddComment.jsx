@@ -10,27 +10,48 @@ class AddComment extends React.Component {
     };
   }
 
-  postComment = async () => {
-    const res = await axios.post(
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    const comment = {
+      name: this.state.name,
+      commentText: this.state.commentText,
+    };
+
+    axios.post(
       `https://boiling-refuge-66454.herokuapp.com/images/${this.props.id}/comments`,
-      {
-        comment: this.state.comment,
-        name: this.state.name,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
+      { comment }
     );
   };
 
   render() {
     return (
-      <form method="POST" className="modal__inner-form">
-        <input type="text" placeholder="Ваше имя" value={this.state.name}/>
-        <input type="text" placeholder="Ваш комментарий" value={this.state.commentText}/>
-        <button onClick={this.postComment}>Оставить комментарий</button>
+      <form
+        // method="POST"
+        onSubmit={this.handleSubmit}
+        className="modal__inner-form"
+      >
+        <input
+          type="text"
+          placeholder="Ваше имя"
+          value={this.state.name}
+          onChange={(evt) =>
+            this.setState({
+              name: evt.target.value,
+            })
+          }
+        />
+        <input
+          type="text"
+          placeholder="Ваш комментарий"
+          value={this.state.commentText}
+          onChange={(evt) =>
+            this.setState({
+              commentText: evt.target.value,
+            })
+          }
+        />
+        <button>Оставить комментарий</button>
       </form>
     );
   }
