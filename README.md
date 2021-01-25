@@ -16,9 +16,7 @@
 
 ​
 Дизайн можно найти [тут](https://www.figma.com/file/3VP0QDK3kjdfbkj8TRrtsx/Test-task?node-id=0%3A1).
-​
 
-Ответы на вопросы по заданию можно найти [тут](mailto:varkadov@avito.ru).
 ​
 
 Мы оценим если:
